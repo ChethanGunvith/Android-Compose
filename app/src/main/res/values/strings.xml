@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ComposeUISample</string>
+    <string name="search_hint">search Hotel</string>
+    <string name="venue_photo">photo</string>
+    <string name="venue_name">name</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="empty_search_result">No results for <b>%s</b></string>
+
+
+    <string name="enter_your_currency_title">Enter your place name</string>
+</resources>

@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+
+
+android {
+
+
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId project.APPLICATIONID
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+        versionName project.VERSION_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        testInstrumentationRunner "com.chethan.abn.util.TestRunner"
+        buildConfigField "int", "DB_VERSION", project.DATABASE_VERSION
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerVersion "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
+        kotlinCompilerExtensionVersion "${versions.compose}"
+
+    }
+
+
+}
+
+
+dependencies {
+
+
+    // Kotlin
+    implementation deps.kotlinStdLib
+
+    // Support Libraries
+    implementation deps.support.appCompat
+    implementation deps.support.ktx
+    implementation deps.support.ktxViewModel
+    implementation deps.support.ktxLiveData
+    implementation deps.support.lifecycleExtensions
+
+    // CardView
+    implementation deps.cardView
+
+    // Constraint Layout
+    implementation deps.constraintLayout
+
+    // Coroutine
+    implementation deps.coroutine.core
+
+
+    implementation deps.compose.core
+    implementation deps.compose.foundation
+    implementation deps.compose.tooling
+    implementation deps.compose.layout
+    implementation deps.compose.material
+    implementation deps.compose.savedInstanceState
+    implementation deps.compose.uiLiveData
+    androidTestImplementation deps.compose.uiTest
+    implementation deps.compose.activityKtx
+
+
+    // Image loading
+    implementation deps.imageLoading.picasso
+    implementation deps.imageLoading.glideCore
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.junitImplementation
+
+    // Room
+    implementation deps.room.roomRuntime
+    kapt deps.room.roomCompiler
+    implementation deps.room.roomKtx
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.retrofitInterceptor
+    implementation deps.retrofit.converterGson
+
+    // hilt dependency injection
+    implementation deps.hilt.hiltAndroid
+    implementation deps.hilt.hiltLifecycleViewModel
+    kapt deps.hilt.hiltAndroidCompiler
+    kapt deps.hilt.hiltCompiler
+
+
+
+}
+
+
+repositories {
+    google()
+}
+
